@@ -272,7 +272,7 @@ var Swup = function () {
 			animationSelector: '[class*="transition-"]',
 			linkSelector: 'a[href^="' + window.location.origin + '"]:not([data-no-swup]), a[href^="/"]:not([data-no-swup]), a[href^="#"]:not([data-no-swup])',
 			cache: true,
-			containers: ['#swup', '#body3D'],
+			containers: ['#swup'],
 			requestHeaders: {
 				'X-Requested-With': 'swup',
 				Accept: 'text/html, application/xhtml+xml'
