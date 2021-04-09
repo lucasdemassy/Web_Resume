@@ -6,7 +6,8 @@
     "stylus": "stylus src/css/main.styl -o assets/main.css",
     "webpack": "webpack-cli src/js/app.js -o assets/app.js --mode production",
     "build": "npm run stylus && npm run webpack",
-    "start": "http-server"
+    "start": "http-server",
+    "go": "npm run stylus && npm run webpack && npm start"
   },
   "author": "Georgy Marchuk",
   "license": "MIT",
