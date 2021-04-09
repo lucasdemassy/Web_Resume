@@ -98,19 +98,31 @@ html.is-animating .transition-fade {
 }
 .wrapper {
   width: 100%;
-  height: 100%;
+  /*height: 100%;*/
   text-align: center;
   padding: 20px;
-  overflow: auto;
+  overflow-x: hidden;
+  overflow-y: auto;
   -webkit-overflow-scrolling: touch;
   display: flex;
   justify-content: center;
   align-items: center;
   margin: 0;
+  flex-direction: column;
 }
 .wrapper-inner {
   max-width: 480px;
   margin: 0 auto;
+}
+#body3D { 
+  margin: 0; 
+  height: 60vh !important;
+  width: 100vw !important;
+  display: flex;
+  position: relative;
+}
+canvas { 
+  display: flex; 
 }
 .button {
   display: inline-block;

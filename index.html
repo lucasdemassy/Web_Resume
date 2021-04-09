@@ -8,12 +8,9 @@
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600" rel="stylesheet">
     <script async defer src="https://buttons.github.io/buttons.js"></script>
     <link rel="stylesheet" href="./assets/main.css">
-    <style>
-        #body3D { margin: 0; height: 60% !important;}
-        canvas { display: block; }
-    </style>
 </head>
 <body>
+    <!--
     <header class="header">
         <ul>
             <li><a class="u-color-blue" href="https://github.com/gmrchk/swup/">Swup</a> <br> <a class="github-button" href="https://github.com/gmrchk/swup" data-icon="octicon-star" data-show-count="true" aria-label="Star gmrchk/swup on GitHub">Star</a></li>
@@ -21,39 +18,43 @@
             <li><a href="https://github.com/gmrchk/swup-gia-demo">Source</a> <br> <a class="github-button" href="https://github.com/gmrchk/swup-gia-demo/fork" data-icon="octicon-repo-forked" aria-label="Fork gmrchk/swup-gia-demo on GitHub">Fork</a></li>
         </ul>
     </header>
+    -->
 
-    <div id="body3D">
-        <script src="js/three.js"></script>
-        <script>
-            var body3D = document.getElementById("body3D");
-            var scene = new THREE.Scene();
-            var camera = new THREE.PerspectiveCamera( 75, body3D.getBoundingClientRect().width / body3D.getBoundingClientRect().height, 0.1, 1000 );
+    <main class="wrapper transition-fade" id="swup">
+        <div id="body3D" class="wrapper-inner">
+            <script src="./js/three.js"></script>
+            <script>
+                let body3D = document.getElementById("body3D");
+                let scene = new THREE.Scene();
+                console.dir("body3D", body3D)
+                console.log("width", body3D.getBoundingClientRect().width, "height", body3D.getBoundingClientRect().height)
+                let camera = new THREE.PerspectiveCamera( 75, body3D.getBoundingClientRect().width / body3D.getBoundingClientRect().height, 0.1, 1000 );
 
-            var renderer = new THREE.WebGLRenderer();
-            renderer.setSize( body3D.getBoundingClientRect().width, body3D.getBoundingClientRect().height );
-            body3D.appendChild( renderer.domElement );
+                let renderer = new THREE.WebGLRenderer();
+                renderer.setSize( body3D.getBoundingClientRect().width, body3D.getBoundingClientRect().height );
+                body3D.appendChild( renderer.domElement );
 
-            var geometry = new THREE.BoxGeometry();
-            var material = new THREE.MeshBasicMaterial( { color: 0x00ff00 } );
-            var cube = new THREE.Mesh( geometry, material );
-            scene.add( cube );
+                let geometry = new THREE.BoxGeometry();
+                let material = new THREE.MeshBasicMaterial( { color: 0x00ff00 } );
+                let cube = new THREE.Mesh( geometry, material );
+                scene.add( cube );
 
-            camera.position.z = 5;
+                camera.position.z = 5;
 
-            var animate = function () {
-                requestAnimationFrame( animate );
+                let animate = function () {
+                    requestAnimationFrame( animate );
 
-                cube.rotation.x += 0.01;
-                cube.rotation.y += 0.01;
+                    cube.rotation.x += 0.01;
+                    cube.rotation.y += 0.01;
 
-                renderer.render( scene, camera );
-            };
+                    renderer.render( scene, camera );
+                };
 
-            animate();
-        </script>
-    </div>
+                animate();
+            </script>
+        </div>
 
-    <div class="wrapper transition-fade" id="swup">
+    
         <div class="wrapper-inner">
             <h1 g-component="SeparateText">Swup + Gia demo</h1>
             <div g-component="Increment" class="increment">
@@ -69,8 +70,8 @@
             <a href="./hobbies.html" class="button button--purple button--fade">Hobbies</a>
             <a href="./contact.html" class="button button--purple button--fade">Contact</a>
         </div>
-    </div>
-        
+    </main>
+    
     <script src="./assets/app.js"></script>
 </body>
 </html>
