@@ -10,3 +10,21 @@ html.is-animating .transition-fade {
 .body{
     /*background-color: aqua;*/
 }
+
+#body3D { 
+    margin: 0; 
+    height: 60vh !important;
+    width: 100vw !important;
+    display: flex;
+    position: relative;
+  }
+  canvas { 
+    display: flex; 
+  }
+
+  .wrapper {
+    height: auto!important;
+    overflow-x: hidden!important;
+    overflow-y: auto!important;
+    flex-direction: column!important;
+  }
