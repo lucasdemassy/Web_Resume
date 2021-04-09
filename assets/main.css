@@ -15,6 +15,7 @@ body {
 }
 body {
   font-size: 16px;
+/*overflow-y hidden*/
 }
 h1 {
   font-size: 30px;
@@ -100,7 +101,7 @@ html.is-animating .transition-fade {
   width: 100%;
   height: 100vh;
   text-align: center;
-  padding: 20px;
+/*padding 20px*/
   overflow-x: hidden;
   overflow-y: hidden;
   -webkit-overflow-scrolling: touch;
@@ -266,6 +267,47 @@ html.is-animating .button--fade {
 }
 canvas {
   display: flex;
+}
+#access-footer {
+  height: 35px;
+  width: 35px;
+  position: relative;
+  top: 7px;
+  transform: rotate(45deg);
+  border-top-style: solid;
+  border-top-color: #fff;
+  border-top-width: 4px;
+  border-left-style: solid;
+  border-left-color: #fff;
+  border-left-width: 4px;
+}
+.round-background {
+  --paddingBackground: 35px;
+  position: absolute;
+  top: calc(100vh);
+  border-radius: 100%;
+  background-color: rgba(0,0,0,0.4);
+  padding: 17.5px;
+  left: calc(50% - var(--paddingBackground));
+  transition-duration: 0.3s;
+  transition-timing-function: cubic-bezier(0.25, 0.87, 0.4, 1.16);
+}
+footer {
+  display: inline-block;
+  text-align: center;
+}
+#access-hover {
+  width: 100vw;
+  height: 10vh;
+  position: fixed;
+  top: 90vh;
+}
+#access-hover:hover + .round-background,
+.round-background:hover {
+  top: calc(100vh - 90px);
+}
+.round-background:hover {
+  cursor: pointer;
 }
 @-moz-keyframes slideUp {
   0% {

@@ -1,0 +1,45 @@
+length = 35px
+colorAccess = white
+widthAccess = 4px
+
+#access-footer
+  height: length
+  width: length
+  position relative
+  top: 7px
+  transform: rotate(45deg)
+  border-top-style: solid
+  border-top-color: colorAccess 
+  border-top-width: widthAccess
+  border-left-style: solid
+  border-left-color: colorAccess 
+  border-left-width: widthAccess
+
+.round-background
+  --paddingBackground: length
+  position: absolute
+  top: calc(100vh)
+  border-radius: 100%
+  background-color: rgba(0,0,0,0.4)
+  padding: length * 0.5
+  left: calc(50% - var(--paddingBackground))
+  transition-duration: 0.3s
+  transition-timing-function: cubic-bezier(.25,.87,.4,1.16)
+
+footer 
+  display: inline-block
+  text-align: center
+
+#access-hover
+  width 100vw
+  height 10vh
+  position fixed
+  top 100vh - @height
+
+#access-hover:hover + .round-background,
+.round-background:hover
+  top: calc(100vh - 90px)
+  
+.round-background:hover
+  cursor pointer
+  
