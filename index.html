@@ -21,37 +21,8 @@
     -->
 
     <main class="wrapper transition-fade" id="swup">
-        <div id="body3D" class="wrapper-inner">
+        <div g-component="body3D" id="body3D" class="wrapper-inner">
             <script src="./js/three.js"></script>
-            <script>
-                let body3D = document.getElementById("body3D");
-                let scene = new THREE.Scene();
-                console.dir("body3D", body3D)
-                console.log("width", body3D.getBoundingClientRect().width, "height", body3D.getBoundingClientRect().height)
-                let camera = new THREE.PerspectiveCamera( 75, body3D.getBoundingClientRect().width / body3D.getBoundingClientRect().height, 0.1, 1000 );
-
-                let renderer = new THREE.WebGLRenderer();
-                renderer.setSize( body3D.getBoundingClientRect().width, body3D.getBoundingClientRect().height );
-                body3D.appendChild( renderer.domElement );
-
-                let geometry = new THREE.BoxGeometry();
-                let material = new THREE.MeshBasicMaterial( { color: 0x00ff00 } );
-                let cube = new THREE.Mesh( geometry, material );
-                scene.add( cube );
-
-                camera.position.z = 5;
-
-                let animate = function () {
-                    requestAnimationFrame( animate );
-
-                    cube.rotation.x += 0.01;
-                    cube.rotation.y += 0.01;
-
-                    renderer.render( scene, camera );
-                };
-
-                animate();
-            </script>
         </div>
 
     
