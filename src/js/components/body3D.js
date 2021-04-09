@@ -1,5 +1,5 @@
 import Component from 'gia/Component';
-//import THREE from '../js/three'
+import * as THREE from 'three/build/three.module';
 
 export default class body3D extends Component {
     constructor(element) {
@@ -14,7 +14,10 @@ export default class body3D extends Component {
     mount() {
         console.log("Hello THREE")
         console.log(this)
-        /*
+        console.log("a")
+        console.log(Component)
+        console.log(THREE)
+    
         let body3D = document.getElementById("body3D");
         let scene = new THREE.Scene();
         console.dir("body3D", body3D)
@@ -42,7 +45,7 @@ export default class body3D extends Component {
         };
 
         animate();
-        */
+        
 
         /*let newContent = "";
         this.element.innerText.split(' ').forEach(function (word, index) {
