@@ -1,19 +1,28 @@
 length = 35px
+lengthBefore = 15px
 colorAccess = white
 widthAccess = 4px
+widthBefore = 20px
+
+sqrt(x)
+  return math(x, 'sqrt')
 
 #access-footer
-  height: length
-  width: length
+  height: lengthBefore
+  width: lengthBefore
   position relative
-  top: 7px
-  transform: rotate(45deg)
+  top: 0px
+  transform: rotate(-135deg)
   border-top-style: solid
   border-top-color: colorAccess 
-  border-top-width: widthAccess
+  border-top-width: widthBefore
   border-left-style: solid
   border-left-color: colorAccess 
-  border-left-width: widthAccess
+  border-left-width: widthBefore
+  border-radius: 100%
+  transition-delay: 0.1s
+  transition-duration: 0.3s
+  transition-timing-function: cubic-bezier(.25,.87,.4,1.16)
 
 .round-background
   --paddingBackground: length
@@ -21,10 +30,15 @@ widthAccess = 4px
   top: calc(100vh)
   border-radius: 100%
   background-color: rgba(0,0,0,0.4)
-  padding: length * 0.5
+  height: length * 2
+  width: length * 2
   left: calc(50% - var(--paddingBackground))
+  transition-delay: 0.3s
   transition-duration: 0.3s
   transition-timing-function: cubic-bezier(.25,.87,.4,1.16)
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
 footer 
   display: inline-block
@@ -39,6 +53,19 @@ footer
 #access-hover:hover + .round-background,
 .round-background:hover
   top: calc(100vh - 90px)
+
+#access-hover:hover
+  transition-delay: 0s
+
+#access-hover:hover + .round-background>#access-footer,
+.round-background:hover>#access-footer
+  height: length
+  width: length
+  border-radius: 0%
+  border-top-width: widthAccess
+  border-left-width: widthAccess
+  transform: rotate(45deg)
+  top: ((length * sqrt(2)) * 0.125)
   
 .round-background:hover
   cursor pointer

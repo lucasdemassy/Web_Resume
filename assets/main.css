@@ -269,17 +269,21 @@ canvas {
   display: flex;
 }
 #access-footer {
-  height: 35px;
-  width: 35px;
+  height: 15px;
+  width: 15px;
   position: relative;
-  top: 7px;
-  transform: rotate(45deg);
+  top: 0px;
+  transform: rotate(-135deg);
   border-top-style: solid;
   border-top-color: #fff;
-  border-top-width: 4px;
+  border-top-width: 20px;
   border-left-style: solid;
   border-left-color: #fff;
-  border-left-width: 4px;
+  border-left-width: 20px;
+  border-radius: 100%;
+  transition-delay: 0.1s;
+  transition-duration: 0.3s;
+  transition-timing-function: cubic-bezier(0.25, 0.87, 0.4, 1.16);
 }
 .round-background {
   --paddingBackground: 35px;
@@ -287,10 +291,15 @@ canvas {
   top: calc(100vh);
   border-radius: 100%;
   background-color: rgba(0,0,0,0.4);
-  padding: 17.5px;
+  height: 70px;
+  width: 70px;
   left: calc(50% - var(--paddingBackground));
+  transition-delay: 0.3s;
   transition-duration: 0.3s;
   transition-timing-function: cubic-bezier(0.25, 0.87, 0.4, 1.16);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 footer {
   display: inline-block;
@@ -305,6 +314,19 @@ footer {
 #access-hover:hover + .round-background,
 .round-background:hover {
   top: calc(100vh - 90px);
+}
+#access-hover:hover {
+  transition-delay: 0s;
+}
+#access-hover:hover + .round-background>#access-footer,
+.round-background:hover>#access-footer {
+  height: 35px;
+  width: 35px;
+  border-radius: 0%;
+  border-top-width: 4px;
+  border-left-width: 4px;
+  transform: rotate(45deg);
+  top: 6.187184335382291px;
 }
 .round-background:hover {
   cursor: pointer;
