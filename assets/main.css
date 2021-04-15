@@ -334,6 +334,7 @@ footer {
 .map {
   width: 100%;
   height: 400px;
+  background-color: transparent;
 }
 a.skiplink {
   position: absolute;
@@ -353,6 +354,9 @@ a.skiplink:focus {
 }
 #map:focus {
   outline: #4a74a8 solid 0.15em;
+}
+.ol-control {
+  display: none;
 }
 @-moz-keyframes slideUp {
   0% {
