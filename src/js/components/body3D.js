@@ -3,7 +3,6 @@ import * as THREE from 'three/build/three.module';
 
 export default class body3D extends Component {
     constructor(element) {
-        console.log("Hello constructor")
         super(element);
 
         this.options = {
@@ -12,20 +11,61 @@ export default class body3D extends Component {
     }
 
     mount() {
+
+        function onWindowResize() {
+            camera.aspect = body3D.getBoundingClientRect().width / body3D.getBoundingClientRect().height
+            renderer.setSize(body3D.getBoundingClientRect().width, body3D.getBoundingClientRect().height);
+            camera.updateProjectionMatrix();
+        }
+
+        function onPointerMove( event ) {
+            pointer.x = ( event.clientX / body3D.getBoundingClientRect().width ) * 2 - 1;
+            pointer.y = - ( event.clientY / body3D.getBoundingClientRect().height ) * 2 + 1;
+            //console.log("pointer : ", pointer.x, pointer.y)
+            //console.log("event : ", event.x, event.y)
+            //console.log("body3D : ", body3D.getBoundingClientRect().width, body3D.getBoundingClientRect().height)
+        }
+
+        function animate() {
+            requestAnimationFrame( animate );
+            cube.rotation.x += 0.01;
+            cube.rotation.y += 0.01;
+            render();
+
+        };
+
+        function render() {
+            // find intersections
+            // update the picking ray with the camera and mouse position
+            raycaster.setFromCamera( pointer, camera );
+            // calculate objects intersecting the picking ray
+            const intersects = raycaster.intersectObjects( scene.children );            
+            if ( intersects.length > 0 ) {
+                //console.log(intersects)
+                for (let i = 0; i < intersects.length; i ++) {
+                    if ( INTERSECTED != intersects[ 0 ].object ) {
+                        if ( INTERSECTED ) INTERSECTED.material.color.setHex( INTERSECTED.currentHex );
+                        INTERSECTED = intersects[ 0 ].object;
+                        INTERSECTED.currentHex = INTERSECTED.material.color.getHex();
+                        INTERSECTED.material.color.setHex( 0xff0000 );
+                    }
+                }
+            } else {
+                if ( INTERSECTED ) INTERSECTED.material.color.setHex( INTERSECTED.currentHex );
+                INTERSECTED = null;
+            }
+            renderer.render( scene, camera );
+        }
+
         console.log("Hello THREE")
-        console.log(this)
-        console.log("a")
-        console.log(Component)
-        console.log(THREE)
     
         let body3D = document.getElementById("body3D");
         let scene = new THREE.Scene();
-        console.dir("body3D", body3D)
         console.log("width", body3D.getBoundingClientRect().width, "height", body3D.getBoundingClientRect().height)
-        let camera = new THREE.PerspectiveCamera( 75, body3D.getBoundingClientRect().width / body3D.getBoundingClientRect().height, 0.1, 1000 );
+        let camera = new THREE.PerspectiveCamera(75, body3D.getBoundingClientRect().width / body3D.getBoundingClientRect().height, 0.1, 1000);
 
         let renderer = new THREE.WebGLRenderer();
-        renderer.setSize( body3D.getBoundingClientRect().width, body3D.getBoundingClientRect().height );
+        renderer.setSize(body3D.getBoundingClientRect().width, body3D.getBoundingClientRect().height);
         body3D.appendChild( renderer.domElement );
 
         let geometry = new THREE.BoxGeometry();
@@ -35,16 +75,17 @@ export default class body3D extends Component {
 
         camera.position.z = 5;
 
-        let animate = function () {
-            requestAnimationFrame( animate );
+        let raycaster = new THREE.Raycaster();
+        const pointer = new THREE.Vector2();
+        let INTERSECTED;
 
-            cube.rotation.x += 0.01;
-            cube.rotation.y += 0.01;
+        window.addEventListener( 'resize', onWindowResize );
+        document.addEventListener( 'mousemove', onPointerMove );
 
-            renderer.render( scene, camera );
-        };
+        animate();            
+        
+        
 
-        animate();
         
 
         /*let newContent = "";

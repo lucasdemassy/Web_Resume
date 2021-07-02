@@ -5,6 +5,11 @@ import components from './components';
 // first animate in
 setTimeout(function () {
     document.documentElement.classList.remove('is-animating');
+    //Trigger the resize window event when all the content is loaded
+    var el = document; // This can be your element on which to trigger the event
+    var event = document.createEvent('HTMLEvents');
+    event.initEvent('resize', true, false);
+    el.dispatchEvent(event);
 }, 100)
 
 // enable components
@@ -18,27 +23,16 @@ const swup = new Swup({
 // reload components for each container after transition
 swup.on('contentReplaced', function () {
     document.querySelectorAll('[data-swup]').forEach(function (container) {
-        loadComponents(components, container);
+        console.log(loadComponents(components, container));
     });
 });
 
-console.dir(document)
+
 
 let AccessHover = document.getElementById('access-hover')
-console.dir("Hello Access Hover")
-console.dir(AccessHover)
-
 let AccessFooter = document.getElementById('access-footer')
-console.dir("Hello Access Footer")
-console.dir(AccessFooter)
-
 let RoundBackground = document.getElementsByClassName('round-background')[0]
-console.dir("Hello round-background")
-console.dir(RoundBackground)
-
 let linkContainer = document.getElementsByClassName('link-container')[0]
-console.dir("Hello link-Container")
-console.dir(linkContainer)
 
 //When the user click on the footer icon
 AccessFooter.addEventListener("click", (e) => HandleClickFooter(e), false);
