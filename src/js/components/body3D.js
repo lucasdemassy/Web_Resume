@@ -46,12 +46,14 @@ export default class body3D extends Component {
                     INTERSECTED = intersects[ 0 ].object;
                     INTERSECTED.currentHex = INTERSECTED.material.color.getHex();
                     INTERSECTED.material.color.setHex( 0xff0000 );
+                    body3D.style.cursor = 'pointer'
                 }
             } else {
                 if ( INTERSECTED ){
                     INTERSECTED.material.color.setHex( INTERSECTED.currentHex );
                 }
                 INTERSECTED = null;
+                body3D.style.cursor = 'auto'
             }
             renderer.render( scene, camera );
         }
@@ -83,7 +85,7 @@ export default class body3D extends Component {
         camera.position.z = 5;
 
         let raycaster = new THREE.Raycaster();
-        const pointer = new THREE.Vector2();
+        const pointer = new THREE.Vector2(200,200); //x=200 and y=200 to avoid that the object is hover when the page is loaded
         let INTERSECTED;
 
         window.addEventListener( 'resize', onWindowResize );
