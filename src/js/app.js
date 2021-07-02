@@ -24,6 +24,10 @@ swup.on('contentReplaced', function () {
 
 console.dir(document)
 
+let AccessHover = document.getElementById('access-hover')
+console.dir("Hello Access Hover")
+console.dir(AccessHover)
+
 let AccessFooter = document.getElementById('access-footer')
 console.dir("Hello Access Footer")
 console.dir(AccessFooter)
@@ -49,11 +53,17 @@ function HandleClickFooter(e)  {
         console.log(valueBottom);
         linkContainer.style.bottom = valueBottom;
         //Drop down the footer button
-        //--> Done automatically
+        //--> Done automatically if the links are higher than the access-hover height
+        AccessHover.style["pointer-events"] = 'none';
+        AccessFooter.style["pointer-events"] = 'none';
+        RoundBackground.style["pointer-events"] = 'none';
 
         //Reset the bottom value of the container when the mouse leaves the container
         linkContainer.addEventListener('mouseleave', (e) => {
             linkContainer.style.bottom = '0px';
+            AccessHover.style["pointer-events"] = 'auto';
+            AccessFooter.style["pointer-events"] = 'auto';
+            RoundBackground.style["pointer-events"] = 'auto';
         }, false);
     }
 }
