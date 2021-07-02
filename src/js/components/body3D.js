@@ -41,20 +41,27 @@ export default class body3D extends Component {
             // calculate objects intersecting the picking ray
             const intersects = raycaster.intersectObjects( scene.children );            
             if ( intersects.length > 0 ) {
-                //console.log(intersects)
-                for (let i = 0; i < intersects.length; i ++) {
-                    if ( INTERSECTED != intersects[ 0 ].object ) {
-                        if ( INTERSECTED ) INTERSECTED.material.color.setHex( INTERSECTED.currentHex );
-                        INTERSECTED = intersects[ 0 ].object;
-                        INTERSECTED.currentHex = INTERSECTED.material.color.getHex();
-                        INTERSECTED.material.color.setHex( 0xff0000 );
-                    }
+                if ( INTERSECTED != intersects[ 0 ].object ) {
+                    if ( INTERSECTED ) INTERSECTED.material.color.setHex( INTERSECTED.currentHex );
+                    INTERSECTED = intersects[ 0 ].object;
+                    INTERSECTED.currentHex = INTERSECTED.material.color.getHex();
+                    INTERSECTED.material.color.setHex( 0xff0000 );
                 }
             } else {
-                if ( INTERSECTED ) INTERSECTED.material.color.setHex( INTERSECTED.currentHex );
+                if ( INTERSECTED ){
+                    INTERSECTED.material.color.setHex( INTERSECTED.currentHex );
+                }
                 INTERSECTED = null;
             }
             renderer.render( scene, camera );
+        }
+
+        function onDocumentMouseDown( event ) {
+            event.preventDefault();                                      
+            const intersects = raycaster.intersectObjects( scene.children );
+            if ( intersects.length > 0 ) {
+                intersects[ 0 ].object.material.color.setHex( Math.random() * 0xffffff );
+            } 
         }
 
         console.log("Hello THREE")
@@ -81,6 +88,7 @@ export default class body3D extends Component {
 
         window.addEventListener( 'resize', onWindowResize );
         document.addEventListener( 'mousemove', onPointerMove );
+        document.addEventListener( 'mousedown', onDocumentMouseDown );
 
         animate();            
         
